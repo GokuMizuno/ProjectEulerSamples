@@ -1,0 +1,5 @@
+The point of this project is to display some selected works from the Project Euler Problem Site.  You can find this site at https://projecteuler.net
+
+Most of these project files will be written in C or C++, although there will be some Java or Python as well.
+
+These examples are tested, and so assumed to be correct, however, Project Euler changes often, and there is no guarantee of such.
