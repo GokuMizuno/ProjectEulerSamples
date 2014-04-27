@@ -10,22 +10,24 @@ int main()
    short i,j;
    i = j = 0; //needed?
    
-   for(i=0;j<gridsize;i++)
+   for(i=0;i<gridsize;i++)
    {
     for(j=0;j<gridsize;j++)
     {
         grid[i][j] = 0;
-        std::cout << grid[i][j];
+//        std::cout << grid[i][j];
     }
-    std::cout << std::endl;
+//    std::cout << std::endl;
    }
    i^=i;
    j^=j;
    std::cout << "i = " << i << " j = " << j << std::endl;
    
+   //edges
    while(i<gridsize)
    {
        grid[i][j] = 1;
+	   grid[j][i] = grid[i][j];  //symmetry
        std::cout << grid[i][j];
        i++;
    }
@@ -34,17 +36,18 @@ int main()
    while(i<gridsize)
    {
        j=1;
-       while(j<i)
+       while(j<=i)
        {
-           grid[i][j] = grid[i-1][j]+grid[i][j-1];  //double check this
+           grid[i][j] = grid[i-1][j] + grid[i][j-1];  //double check this
+		   //the above line is failing in the grid[1][2] case.  Find out why.
            j++;
        }
-       grid[i][j] = 2*grid[i-1][j];
+//       grid[i][j] = 2*grid[i-1][j];
        i++;
    }
    
    /*Debugging*/
-   for(i=0;j<gridsize;i++)
+   for(i=0;i<gridsize;i++)
    {
     for(j=0;j<gridsize;j++)
     {
