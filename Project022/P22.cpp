@@ -35,6 +35,14 @@ __int64 getTotalScore(std::vector<std::string> names)
 	return sum;
 }
 
+bool userSortString(std::string x, std::string y)//std::vector<std::string> x, std::)
+{
+	if(x.compare(y) < 0)
+		return true;
+	else
+		return false;
+}
+
 int main()
 {
 	unsigned __int64 sum;
@@ -72,7 +80,8 @@ int main()
 		return 0;
 	}
 
-	std::sort(names.begin(),names.end());  //built in sorts FTW!
+	//We have to define our own sort, as std::sort(RanIt begin, RanIt end) is a C++11 function
+	std::sort(names.begin(),names.end(), userSortString);//std::greater<std::string>());  //built in sorts FTW!
 	std::cout << "The total score of all the names in names.txt is " << getTotalScore(names) << std::endl;
 
 	return 0;
