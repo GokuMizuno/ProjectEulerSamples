@@ -20,7 +20,7 @@ struct date
 
 int main()
 {
-    int count = 0;
+	int count = 0;
     int cycle = 0;  //cycles between 0-3, corresponds to leap year data
     date p19;
     p19.year = 1900;
@@ -33,31 +33,34 @@ int main()
       outputs:  1901%4 is: 1, 475*/
     
     if(p19.year == 1900)
-    {
+	{
         //add 365 days
-        p19.dow = (365%6);
+		p19.dow = (365%6);
         p19.year++;
         cycle++;
     }
-    for(;p19.year<2001;p19.year++)
+	p19.day = 7-p19.dow; //should these go above?
+	p19.dow = 0;
+	
+	while(p19.year < 2001)
     {
         //do math  need to add loop for weeks, this only loops through years;
         /*Find Sundays.  Then add 7 to days, check against month, if day>month_length
           month++.  if(day==1,dow==0)counter++*/
-        p19.day = 7-p19.dow;
-        p19.dow = 0;
         p19.day += 7;
         switch(p19.month)
         {
-            case '1':
+            case 1:
               if(p19.day > 31)
               {
                   p19.month++;
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             /*TEST FOR LEAP YEAR*/
-            case '2':
+            case 2:
               if(cycle == 0) //leap year
               {
                   if(p19.day > 29)
@@ -66,6 +69,8 @@ int main()
                       p19.day -= 29;
                       break;
                   }
+				  else
+					  break;
               }
               else //cycle !=0
               {
@@ -75,6 +80,8 @@ int main()
                       p19.day -= 28;
                       break;
                   }
+				  else
+					  break;
               }
             case 3:
               if(p19.day > 31)
@@ -83,6 +90,8 @@ int main()
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             case 4:
               if(p19.day > 30)
               {
@@ -97,6 +106,8 @@ int main()
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             case 6:
               if(p19.day > 30)
               {
@@ -104,6 +115,8 @@ int main()
                   p19.day -= 30;
                   break;
               }
+			  else
+				  break;
             case 7:
               if(p19.day > 31)
               {
@@ -111,6 +124,8 @@ int main()
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             case 8:
               if(p19.day > 31)
               {
@@ -118,6 +133,8 @@ int main()
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             case 9:
               if(p19.day > 30)
               {
@@ -125,6 +142,8 @@ int main()
                   p19.day -= 30;
                   break;
               }
+			  else
+				  break;
             case 10:
               if(p19.day > 31)
               {
@@ -132,6 +151,8 @@ int main()
                   p19.day -= 31;
                   break;
               }
+			  else
+				  break;
             case 11:
               if(p19.day > 30)
               {
@@ -139,6 +160,7 @@ int main()
                   p19.day -= 30;
                   break;
               }
+			  else break;
             case 12:
               if(p19.day > 31)
               {
@@ -147,7 +169,7 @@ int main()
                   p19.year++;
                   if(cycle == 3)
                   {
-                      cycle == 0;
+                      cycle = 0;
                   }
                   else
                   {
@@ -155,6 +177,8 @@ int main()
                   }
                   break;
               }
+			  else
+				  break;
             default:
             {
                 std::cout << "Something went wrong.  Dumping data: "
