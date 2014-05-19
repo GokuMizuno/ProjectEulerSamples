@@ -9,6 +9,7 @@ And on leap years, twenty-nine.
 A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
 
 How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?*/
+/*
 #include <iostream>
 struct date
 {
@@ -32,7 +33,7 @@ int main()
     /*std::cout << "1901 % 4 is: " << 1901%4 << ", " << (1901>>2) << std::endl;
       outputs:  1901%4 is: 1, 475*/
     
-    if(p19.year == 1900)
+/*    if(p19.year == 1900)
 	{
         //add 365 days
 		p19.dow = (365%6);
@@ -47,7 +48,7 @@ int main()
         //do math  need to add loop for weeks, this only loops through years;
         /*Find Sundays.  Then add 7 to days, check against month, if day>month_length
           month++.  if(day==1,dow==0)counter++*/
-        p19.day += 7;
+/*        p19.day += 7;
         switch(p19.month)
         {
             case 1:
@@ -60,7 +61,7 @@ int main()
 			  else
 				  break;
             /*TEST FOR LEAP YEAR*/
-            case 2:
+/*            case 2:
               if(cycle == 0) //leap year
               {
                   if(p19.day > 29)
@@ -194,4 +195,39 @@ int main()
     std::cout << "The total number of Sundays that fall on the first"
     << "of the month is: " << count << std::endl;
    return 0;
+}
+
+This code is off by two.  The hopefully correct code is:
+*/
+
+#include <iostream>
+int main()
+{
+	int c,dom,passed;
+	c=0;
+	passed=1;
+
+	for(int i=1901;i<2001;++i)
+	{
+		for(int j=1;j<13;++j)
+		{
+			if(j == 4 || j == 6 || j == 9 || j == 11)
+			{	dom = 30;  }
+			else if(j == 2)
+			{
+				if(i%400 == 0 || ((i%4 == 0) && (i%100 != 0)))
+				//if(i%4 == 0)
+				{  dom = 29;  }
+				else
+				{  dom = 28;  }
+			}
+			else
+			{  dom = 31;  }
+			if(passed%7 == 0)
+			{  c++;  }
+			passed += dom;
+		}
+	}
+	std::cout << c << std::endl;
+	return 0;
 }
