@@ -32,11 +32,7 @@ int main()
 {
 	int iter = 0;
 	long total;
-	while(iter <100000)
-	{
-		total = months_range(0,1901,2000);
-		iter++;
-	}
+	total = months_range(0,1901,2000);
 	printf("Solution %ld\n", total);
 	return 0;
 }
