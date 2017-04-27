@@ -22,7 +22,8 @@ int main()
     while(b>99)
     {
       prod=a*b;
-      if((prod>pal)&&(isPalendrome(prod))
+        //prod>pal means new palendrome > old palendrome
+      if((prod>pal)&&(isPalendrome(prod)))
         pal = prod;
       b--;
     }
@@ -38,9 +39,6 @@ int isPalendrome(unsigned int num)
   unsigned int rev, org; //the reversed number, original number
   rev = 0;
   org = num;
-
-  if (num > 10)  return 1;
-  if (num == 10) return 0;
 
   /*Would bitshifting make the loop faster?*/
   while(num > 1)
